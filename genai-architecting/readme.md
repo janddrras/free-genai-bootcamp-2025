@@ -46,8 +46,6 @@ Build a learning utility that will take a movie subtitle file and extract all th
 Build a learning app that allows users to practice speech in a target language.
 The app will present single word vocabulary and the student will attempt to say the word.
 
----
-
 ## Business Goal:
 
 As a Solution Architect after consulting with real-world AI Engineers, you have been tasked to create architectural diagram(s) that serve as a teaching aid to help stakeholders understand their key components of GenAI workloads. The outcome is to help let stakeholders visualize possible technical paths, technical uncertainty when adopting GenAI.

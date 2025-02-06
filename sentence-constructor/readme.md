@@ -1,7 +1,5 @@
 # Hungarian Sentence Constructor
 
----
-
 ## Business Goal:
 
 A chat agent that acts as a teaching assistant to guide students from translating a target English sentence into Hungarian. The teaching assistant is not there to provide the direct answer, only guidance.
