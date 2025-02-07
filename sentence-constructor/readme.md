@@ -20,9 +20,9 @@ _Will AI-Powered Assistants replace real teachers?_
 ### Technical Restrictions
 
 An AI-Powered Assistant of the developer’s choice must be used eg:
-ChatGPT https://openai.com/index/chatgpt/
-Anthropic Claude https://www.anthropic.com/claude
-Mistral AI https://mistral.ai/
-*Ollama + Open WebUI https://openwebui.com/
-*LibreChat https://www.librechat.ai/
-Leon https://github.com/leon-ai/leon
+
+- ChatGPT https://openai.com/index/chatgpt/
+- Mistral AI https://mistral.ai/
+- Anthropic Claude https://www.anthropic.com/claude
+- DeepAI https://deepai.org/
+- GeminAI https://geminai.com/
