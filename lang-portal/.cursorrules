@@ -1,0 +1,204 @@
+# Cursor Rules
+
+## Business Goal:
+
+A language learning school wants to build a prototype of learning portal which will act as three things:
+
+-Inventory of possible vocabulary that can be learned
+-Act as a Learning record store (LRS), providing correct and wrong score on practice vocabulary
+-A unified launchpad to launch different learning apps
+
+## Backend
+
+- will use python
+- will use fastapi
+- will use pydantic v2
+- will use sqlite3
+- will use alembic for migrations
+- will use pytest for testing
+- will use docker for containerization
+
+### API Endpoints
+
+- will use instructions/api-endpoints.md for api endpoints
+
+### Task Runner Tasks
+
+Lets list out possible tasks we need for our lang portal.
+
+#### Initialize Database
+
+This task will initialize the sqlite database called `words.db
+
+#### Migrate Database
+
+This task will run a series of migrations sql files on the database
+
+Migrations live in the `migrations` folder.
+The migration files will be run in order of their file name.
+The file names should looks like this:
+
+```sql
+0001_init.sql
+0002_create_words_table.sql
+```
+
+#### Seed Data
+
+This task will import json files and transform them into target data for our database.
+
+All seed files live in the `seeds` folder.
+
+In our task we should have DSL to specific each seed file and its expected group word name.
+
+```json
+[
+  {
+    "hungarian": "fizetni",
+    "english": "to pay",
+  },
+  ...
+]
+```
+
+### Tests
+
+- Implement unit testing for every API endpoint
+
+## Database
+
+- will use sqlite3
+- will use alembic for migrations
+- will use pydantic v2 for database models
+- will use sqlalchemy for database operations
+- database structure is described in instructions/database.md
+
+## Frontend
+
+- will use sveltekit
+- will use svelte-5
+- will use vanilla css
+- will use typescript
+- will use pnpm for package manager
+- will use instructions/frontend.md for frontend development
+
+### Directory structure
+
+#### home page
+
+- path: /
+- will have a link (button) to take us to the dashboard
+
+#### dashboard
+
+- path: /dashboard
+- will provide a summary of learning and act as the default page for the learning apps
+- Components
+  - Last Study Session shows last activity used shows when last activitiy used summarizes wrong vs correct from last activity has a link to the group
+  - Study Progress
+    - total words study eg. 3/124
+    - across all study session show the total words studied out of all possible words in our database
+    - display a mastery progress eg. 0%
+  - Quick Stats
+    - success rate eg. 80%
+    - total study sessions eg. 4
+    - total active groups eg. 3
+    - study streak eg. 4 days
+  - Start Studying Button
+    - goes to study activities page
+  - Needed API Endpoints
+    - GET /api/dashboard/last_study_session
+    - GET /api/dashboard/study_progress
+    - GET /api/dashboard/quick_stats
+- the layout will have a side navigation menu with the following options:
+  - Dashboard
+  - Study Activities
+  - Vocabulary
+  - Grammar
+  - sessions
+  - Settings
+
+#### study activities
+
+- path: /dashboard/study-activities
+- will provide a list of study activities in form of cards
+- each card will have a thumbnail, title, a button to the activity statistics page, and a button to start the activity
+
+##### activity statistics
+
+- path: /dashboard/study-activities/:activity_id/statistics
+- will provide a detailed statistics of the activity
+
+##### activity
+
+- path: /dashboard/study-activities/:activity_id
+- will launch the activity in a new tab
+
+#### vocabulary
+
+- path: /dashboard/vocabulary
+- will provide a list of vocabulary in form of table
+- table will have the following columns:
+  - word in hungarian
+  - word in english
+  - type of word (noun, verb, adjective, adverb, etc.)
+
+#### grammar
+
+- path: /dashboard/grammar
+- will be implemented later
+
+#### sessions
+
+- path: /dashboard/sessions
+- will show a list of study sessions in our database.
+
+##### Components
+
+- Paginated Study Session List
+  - Columns
+    - Id
+    - Activity Name
+    - Group Name
+    - Start Time
+    - End Time
+    - Number of Review Items
+  - Clicking the study session id will take us to the study session show page
+
+##### Needed API Endpoints
+
+- GET /api/study_sessions
+
+##### Study Session Show Page
+
+- path: /dashboard/sessions/:id
+- will show the details of a study session
+- Study Sesssion Details
+  - Activity Name
+  - Group Name
+  - Start Time
+  - End Time
+  - Number of Review Items
+  - Words Review Items (Paginated List of Words)
+    - Should use the same component as the words index page
+
+##### Needed API Endpoints
+
+- GET /api/study_sessions/:id
+- GET /api/study_sessions/:id/words
+
+#### settings
+
+- path: /dashboard/settings
+- will have a switch button to toggle between dark and light mode
+- will have a button to drop all tables and recreate them again
+  - API Endpoint: POST/api/full-reset
+- will have a button to clear the history
+  - API Endpoint: POST/api/reset_history
+
+## IMPORTANT
+
+- use instructions/backend.md for backend development
+- use instructions/database.md for database development
+- use instructions/frontend.md for frontend development
+- generate the Readme.md file for both backend and frontend with: - project description - installation instructions - usage instructions - configuration instructions - contributing instructions - license information - contact information
