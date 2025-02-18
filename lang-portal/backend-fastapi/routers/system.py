@@ -16,13 +16,13 @@ def reset_history(db: Session = Depends(get_db)):
     This deletes all study sessions, activities, and word review items.
     """
     # Delete all word review items
-    db.query(models.WordReviewItem).delete()
+    db.query(WordReviewItem).delete()
     
     # Delete all study sessions
-    db.query(models.StudySession).delete()
+    db.query(StudySession).delete()
     
     # Delete all study activities
-    db.query(models.StudyActivity).delete()
+    db.query(StudyActivity).delete()
     
     db.commit()
     
@@ -38,10 +38,10 @@ def full_reset(db: Session = Depends(get_db)):
     This deletes ALL data including words, groups, and study history.
     """
     # Drop all tables
-    models.Base.metadata.drop_all(bind=engine)
+    Base.metadata.drop_all(bind=engine)
     
     # Recreate all tables
-    models.Base.metadata.create_all(bind=engine)
+    Base.metadata.create_all(bind=engine)
     
     return {
         "success": True,
